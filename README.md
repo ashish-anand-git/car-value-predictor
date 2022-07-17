@@ -1,2 +1,2 @@
 # car-value-predictor
-https://car-price-valuation.herokuapp.com/
+https://used-car-price-analysis.herokuapp.com/
