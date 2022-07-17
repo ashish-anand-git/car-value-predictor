@@ -5,41 +5,235 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div style="color:black">
+    <div class="login-box">
+        <h2>Used Car price Analysis</h2>
         <form action="{{ url_for('predict')}}" method="post">
-            <h2>Car price Analysis</h2>
-            <h3>What was original MSRP(In lakhs)</h3><input id="second" name="Present_Price" required="required">
-            <h3>Age of vehicle</h3><input id="first" name="Year" type="number ">
-            <h3>No. of kilometres on ododmetre?</h3><input id="third" name="Kms_Driven" required="required">
-            <h3>How many owners previous owners ?</h3><br><input id="fourth" name="Owner" required="required">
-            <h3>What Is the Fuel type?</h3><br><select name="Fuel_Type_Petrol" id="fuel" required="required">
-                <option value="Petrol">Petrol</option>
-                <option value="Diesel">Diesel</option>
-            </select>
-            <h3>Are you a Dealer or Individual ?</h3><br><select name="Seller_Type_Individual" id="resea" required="required">
-                <option value="Dealer">Dealer</option>
-                <option value="Individual">Individual</option>
-            </select>
-            <h3>Transmission type</h3><br><select name="Transmission_Mannual" id="research" required="required">
-                <option value="Mannual">Manual Car</option>
-                <option value="Automatic">Automatic Car</option>
-            </select>
-            <br><br><button id="sub" type="submit ">Calculate the Car Value</button>
-            <br>
-
-
+          <div class="user-box">
+            <input id="second" name="Present_Price" required="required">
+            <label>What was original MSRP(In lakhs)</label>
+          </div>
+          <div class="user-box">
+            <input id="first" name="Year" type="number " required="required">
+            <label>Age of vehicle (in years)</label>
+          </div>
+          <div class="user-box">
+            <input id="third" name="Kms_Driven" required="required">
+            <label>No. of kilometres on ododmetre?</label>
+          </div>
+          <div class="user-box">
+            <input id="fourth" name="Owner" required="required">
+            <label>How many owners previous owners ?</label>
+          </div>
+          <h3 style="color:white;">What Is the Fuel type?</h3><br><select name="Fuel_Type_Petrol" id="fuel" required="required">
+                      <option value="Petrol">Petrol</option>
+                      <option value="Diesel">Diesel</option>
+                  </select>
+          
+                  <h3 style="color:white;">Are you a Dealer or Individual ?</h3><br><select name="Seller_Type_Individual" id="resea" required="required">
+                      <option value="Dealer">Dealer</option>
+                      <option value="Individual">Individual</option>
+                  </select>
+                  <h3 style="color:white;">Transmission type</h3><br><select name="Transmission_Mannual" id="research" required="required">
+                      <option value="Mannual">Manual Car</option>
+                      <option value="Automatic">Automatic Car</option>
+                  </select>
+          <br><br>
+          <button id="sub" type="submit ">Calculate the Car Value</button>
+                  <br>
         </form>
+        
+        <br><br><h3 style="color:white;">{{ prediction_text }}<h3>
+      </div>
 
-        <br><br><h3>{{ prediction_text }}<h3>
-    </div>
-    <div class='footer'>
-            <p class='footer-description'>©Ashish anand</p>
-    </div>
+
+    <style>
+        select {
+        border: 0 !important;  /*Removes border*/
+        -webkit-appearance: none;  /*Removes default chrome and safari style*/
+        -moz-appearance: none; /* Removes Default Firefox style*/
+        background: #0088cc url(img/select-arrow.png) no-repeat 90% center;
+        width: 100px; /*Width of select dropdown to give space for arrow image*/
+        text-indent: 0.01px; /* Removes default arrow from firefox*/
+        text-overflow: "";  /*Removes default arrow from firefox*/ /*My custom style for fonts*/
+        color: #FFF;
+        border-radius: 15px;
+        padding: 5px;
+        box-shadow: inset 0 0 5px rgba(000,000,000, 0.5);
+}
+
+html {
+  height: 100%;
+}
+body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.login-box form button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.login-box button:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+.login-box button span {
+  position: absolute;
+  display: block;
+}
+
+.login-box button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.login-box button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.login-box button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+    </style>
 </body>
 
 </html>
